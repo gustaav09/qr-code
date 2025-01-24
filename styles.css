@@ -12,6 +12,9 @@ body {
 .container {
     display: flex;
     gap: 20px;
+    flex-direction: column;  /* Stack items vertically on smaller screens */
+    width: 100%;
+    padding: 20px;
 }
 
 .game-area, .qr-section {
@@ -20,6 +23,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .boxes {
@@ -62,4 +66,31 @@ body {
 #qr-game-code {
     margin-top: 10px;
     border: 1px solid #ddd;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column; /* Stack sections vertically on small screens */
+        gap: 15px;
+    }
+
+    .boxes {
+        grid-template-columns: repeat(3, 1fr); /* Use 3 equal-width columns */
+        gap: 10px;
+    }
+
+    .box {
+        width: 80px; /* Make boxes a bit smaller */
+        height: 80px;
+        font-size: 20px; /* Adjust font size for smaller screens */
+    }
+
+    .qr-section {
+        width: 100%; /* Make QR section full width */
+    }
+
+    .game-area {
+        width: 100%; /* Make game area full width */
+    }
 }
