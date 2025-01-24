@@ -11,39 +11,34 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column;  /* Stack items vertically */
-    gap: 10px;
-    width: 100%;
-    padding: 10px;  /* Add a bit of padding around */
+    gap: 20px;
 }
 
 .game-area, .qr-section {
-    padding: 15px;
+    padding: 20px;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
 }
 
 .boxes {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* Adjust to 3 columns for phone screens */
+    grid-template-columns: repeat(3, 100px);
     gap: 5px;
-    margin: 15px 0;
+    margin: 20px 0;
 }
 
 .box {
-    width: 100%;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border: 1px solid #ddd;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 24px;
     cursor: pointer;
     background-color: #f9f9f9;
-    transition: background-color 0.3s ease;
 }
 
 .box:hover {
@@ -67,29 +62,4 @@ body {
 #qr-game-code {
     margin-top: 10px;
     border: 1px solid #ddd;
-    width: 100%;
-}
-
-/* Media query for phones (max-width: 400px) */
-@media (max-width: 400px) {
-    .box {
-        font-size: 16px; /* Adjust font size for smaller screens */
-        height: 70px;  /* Reduce box height to fit better */
-    }
-
-    .boxes {
-        grid-template-columns: repeat(3, 1fr);  /* Keep the 3 columns */
-    }
-
-    .game-area, .qr-section {
-        padding: 12px; /* Smaller padding */
-    }
-
-    #qr-game-code {
-        width: 100%;  /* Ensure the QR code area takes full width */
-    }
-
-    .container {
-        gap: 8px;  /* Reduce the space between sections */
-    }
 }
