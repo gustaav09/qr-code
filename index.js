@@ -37,6 +37,7 @@ boxes.forEach((box, index) => {
 
             if (checkWinner()) {
                 winnerDisplay.textContent = `${currentPlayer} Wins!`;
+                generateWinnerQRCode(`${currentPlayer} Wins!`); // Generate QR code for the winner
                 boxes.forEach(b => b.removeEventListener('click', box.click));
             } else if (Array.from(boxes).every(b => b.textContent !== '')) {
                 winnerDisplay.textContent = 'It\'s a Draw!';
@@ -54,11 +55,14 @@ function switchPlayer() {
 function checkWinner() {
     return winningCombinations.some(combination => {
         const [a, b, c] = combination;
-        return (
+        if (
             boxes[a].textContent === players[currentPlayer] &&
             boxes[a].textContent === boxes[b].textContent &&
             boxes[a].textContent === boxes[c].textContent
-        );
+        ) {
+            return true;
+        }
+        return false;
     });
 }
 
@@ -105,9 +109,19 @@ restartButton.addEventListener('click', () => {
 });
 
 // Generate QR code for the game URL
-const gameUrl = 'file:///C:/Users/Wellann%20Gustavo/Desktop/JavaScript/game.html'; // Replace with your hosted game URL
+const gameUrl = 'https://qrgames.netlify.app'; // Replace with your hosted game URL
 QRCode.toCanvas(qrGameCanvas, gameUrl, { width: 200 }, error => {
     if (error) {
         console.error("QR Code generation failed:", error);
     }
 });
+
+function generateWinnerQRCode(winnerMessage) {
+    // Create the QR code for the winner message
+    QRCode.toCanvas(qrCodeCanvas, winnerMessage, error => {
+        if (error) {
+            console.error("QR Code generation failed:", error);
+        }
+        continueButton.disabled = false; // Enable the continue button after generating the QR code
+    });
+}
